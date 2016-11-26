@@ -1,0 +1,67 @@
+﻿@model Loger.Common.ViewModels.Settings
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AppLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="panel panel-primary">
+
+            <div class="panel-heading">User info</div>
+
+            <div class="panel-body">
+
+                <img class="modal-marg user-picture" id="uploaded-user-picture" data-bind="attr:{src: AccountPhotoURL}"/>
+
+                <label class="btn btn-success btn-file btn-upload">
+                    Browse... <input type="file" accept="image/gif, image/jpeg, image/png" id="upload-user-picture">
+                </label>
+
+                <form class="modal-marg">
+                    <div class="form-group">
+                        <label for="setting-username" class="modal-add-text">Username</label>
+                        <input type="text" class="form-control" id="setting-username" placeholder="Username" data-bind="value: Username" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="setting-email" class="modal-add-text">Email</label>
+                        <input type="text" class="form-control" id="setting-email" placeholder="Email"  data-bind="value: Email" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="current-password" class="modal-add-text">Write current password</label>
+                        <input type="password" class="form-control" id="current-password" placeholder="Password..."  data-bind="value: CurrentPassword">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password" class="modal-add-text">Write new password</label>
+                        <input type="password" class="form-control" id="new-password" placeholder="New password..."  data-bind="value: NewPassword">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password" class="modal-add-text">Confirm new password</label>
+                        <input type="password" class="form-control" id="confirm-password" placeholder="Confirm password..."  data-bind="value: ConfirmPassword">
+                    </div>
+                </form>
+
+                <div class="col-xs-12" data-bind="visible: ShowError">
+                    <p class="text-danger text-center" data-bind="text: ErrorText"></p>
+                </div>
+
+                <div class="col-xs-12" data-bind="visible: ShowSuccess">
+                    <p class="text-success text-center" data-bind="text: SuccessText"></p>
+                </div>
+
+                <button class="btn btn-primary btn-block" data-bind="click: SaveChanges">Save changes</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+    <script>
+        var model = @Html.Raw(Json.Encode(Model));
+        var viewmodel = ko.mapping.fromJS(model);
+    </script>
+    @Scripts.Render("~/ViewModels/Settings")
+}

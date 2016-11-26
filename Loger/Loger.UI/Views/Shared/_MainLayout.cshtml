@@ -1,0 +1,37 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title | loger</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS -->
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/loger")
+
+</head>
+<body>
+
+    <!-- tuka kontentot -->
+    @RenderBody()
+
+
+    <!-- JS -->
+    @Scripts.Render("~/Scripts/jquery")
+    @Scripts.Render("~/Scripts/bootstrap")
+    @Scripts.Render("~/Scripts/loger")
+    @Scripts.Render("~/Scripts/knockout")
+    @RenderSection("scripts", false)
+    <script>
+        ko.applyBindings(viewmodel);
+    </script>
+</body>
+</html>

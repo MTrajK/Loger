@@ -1,0 +1,67 @@
+﻿
+<div class="row">
+    <div class="cards" data-bind="foreach: { data: Cards, as: 'Card' }">
+
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card">
+
+
+                <div class="image-wrapper">
+
+                    <div class="image">
+                        <img class="img-logo" data-bind="attr:{src: Card.LogoUrl}">
+                    </div>
+
+                    <a href="" data-bind="click:  $parent.onLogoClick.bind($data, Card.LogoId, Card.Liked, Card.LikesNum, Card.CommentsNum)">
+                        <div class="image-hover">
+
+                            <div class="img-title" data-bind="text: Card.Title"></div>
+
+                            <div class="img-desc" data-bind="text: Card.Description"></div>
+
+                            <!-- format :  17 June, 2016-->
+                            <div class="img-date" data-bind="text: Card.UploadDate"></div>
+
+                        </div>
+                    </a>
+
+                </div>
+
+                <div class="desc-wrapper">
+                    <div class="desc">
+
+                        <a class="pull-left" data-bind="attr:{href: Card.AccountURL}">
+                            <img class="img-user img-circle" data-bind="attr:{src: Card.AccountPhotoURL}">
+                        </a>
+
+                        <a class="desc-username pull-left" data-bind="text: Card.Username, attr:{href: Card.AccountURL}"></a>
+
+                        
+                        <div class="desc-fav pull-right" data-bind="click: $parent.onLike.bind($data, Card.LogoId, Card.Liked, Card.LikesNum), css: {yellowGlyph: Card.Liked}">
+                            <span class="glyphicon glyphicon-star desc-glyph"></span>
+                            <span data-bind="text: Card.LikesNum"></span>
+                        </div>
+
+                        <div class="desc-com pull-right" data-bind="click: $parent.onLogoClick.bind($data, Card.LogoId, Card.Liked, Card.LikesNum, Card.CommentsNum)">
+                            <span class="glyphicon glyphicon-comment desc-glyph"></span>
+                            <span data-bind="text: Card.CommentsNum"></span>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--
+    - Add this button if you need it
+    <div class="col-xs-12">
+        <btn class="btn btn-lg btn-block btn-primary btn-marg">Load more...</btn>
+    </div>
+     -->
+</div>

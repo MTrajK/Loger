@@ -1,0 +1,16 @@
+﻿@model Loger.Common.ViewModels.Main
+@{
+    ViewBag.Title = "Following";
+    Layout = "~/Views/Shared/_AppLayout.cshtml";
+}
+
+
+@Html.Partial("_CardsPartial")
+
+
+@section scripts {
+    <script>
+        var model = @Html.Raw(Json.Encode(Model));
+        var viewmodel = ko.mapping.fromJS(model);
+    </script>
+}

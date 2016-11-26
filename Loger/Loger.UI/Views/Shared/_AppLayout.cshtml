@@ -1,0 +1,242 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<header class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")"><img src="~/Images/brand.png"></a>
+        </div>
+
+
+        <div class="collapse navbar-collapse" id="collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="@(ViewBag.Title=="Home"?"active":"")">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li class="@(ViewBag.Title=="Following"?"active":"")">@Html.ActionLink("Following", "Following", "Home")</li>
+                <li class="@(ViewBag.Title=="Favorites"?"active":"")">@Html.ActionLink("Favorites", "Favorites", "Home")</li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <img class="img-nav img-circle" data-bind="attr:{src: User.AccountPhotoURL}">
+                        
+                        <span class="user-nav" data-bind="text: User.Username"></span>
+
+                        <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+
+                        <li class="@((ViewBag.Title=="Profile"&&Model.User.Id==Model.UserProfileId)?"active":"")"><a data-bind="attr: {href: viewmodel.User.AccountURL}"><span class="glyphicon glyphicon-user"></span> &nbsp; Profile</a></li>
+                        <li class="@(ViewBag.Title=="Edit"?"active":"")"><a href="@Url.Action("Edit", "Profile")"><span class="glyphicon glyphicon-cog"></span> &nbsp; Settings</a></li>
+
+                        <li role="separator" class="divider"></li>
+
+                        <li><a href="@Url.Action("Logoff", "Account")"><span class="glyphicon glyphicon-off"></span> &nbsp; Log Out</a></li>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+
+<section id="wrap">
+    <div id="main" class="container">
+
+        <!-- tuka kontentot -->
+        @RenderBody()
+
+    </div>
+</section>
+
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                Loger &copy; 2016
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- float button -->
+<!-- moze i vaka da se otvori modalniot data-toggle="modal" data-target="#modal-add-logo" -->
+<button class="btn btn-lg btn-success btn-flat" data-bind="click: onFlatBtnClick">
+    <span class="glyphicon glyphicon-plus"></span>
+</button>
+
+
+
+
+<!-- modal view - show logo -->
+<div class="modal fade" id="modal-show-logo" role="dialog">
+    <div class="modal-dialog container">
+        <div class="modal-content">
+            <div class="modal-body row">
+
+                <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8">
+                    <div class="modal-image-wrapper">
+                        <div class="image">
+
+                            <img class="img-logo" data-bind="attr:{src: LogoDetails.LogoURL}">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
+                    <div class="modal-desc-wrapper">
+                        <div class="desc">
+
+
+                            <div class="modal-up">
+
+                                <a class="pull-left" data-bind="attr:{src: LogoDetails.AccountURL}">
+                                    <img class="modal-img-user img-circle"  data-bind="attr:{src: LogoDetails.AccountPhotoURL}">
+                                </a>
+
+                                <a class="desc-username modal-desc-username pull-left" data-bind="attr:{src: LogoDetails.AccountURL}, text: LogoDetails.Username"></a>
+
+                            </div>
+
+                            <div class="modal-title" data-bind="text: LogoDetails.Title"></div>
+
+                            <div class="modal-description" data-bind="text: LogoDetails.Description"></div>
+
+                            <div class="modal-other">
+
+                                <div class="modal-fav pull-left" data-bind="click: LogoDetails.LikeLogo, css: {yellowGlyph: LogoDetails.Liked}">
+                                    <span class="glyphicon glyphicon-star desc-glyph"></span>
+                                    <span data-bind="text: LogoDetails.LikesNum"></span>
+                                </div>
+
+                                <div class="modal-date pull-right">
+                                    <span data-bind="text: LogoDetails.UploadDate"></span>
+                                </div>
+
+                            </div>
+                                
+                            <div class="modal-comments" data-bind="foreach: { data: LogoDetails.Comments, as: 'Comment' }">
+
+                                <div class="modal-comment">
+                                    <div class="modal-comment-user">
+
+                                        <a class="pull-left" data-bind="attr:{href: Comment.AccountURL}">
+                                            <img class="img-user img-circle" data-bind="attr:{src: Comment.AccountPhotoURL}">
+                                        </a>
+
+                                        <a class="desc-username pull-left" data-bind="attr:{href: Comment.AccountURL}, text: Comment.Username"></a>
+
+                                    </div>
+                                    <div class="modal-comment-text" data-bind="text: Comment.Content"></div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="modal-add-comment">
+                                <div class="col-xs-12" data-bind="visible: LogoDetails.ShowError">
+                                    <p class="text-danger text-center" data-bind="text: LogoDetails.ErrorText"></p>
+                                </div>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Write a comment..." data-bind="value: LogoDetails.Content">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="button" data-bind="click: LogoDetails.CommentLogo">
+                                            <span class="glyphicon glyphicon-send"></span> 
+                                        </button>
+                                    </span>
+                                </div><!-- /input-group -->
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="close pull-right close-up" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- modal view - add logo -->
+<div class="modal fade" id="modal-add-logo" role="dialog">
+    <div class="modal-dialog container">
+        <div class="modal-content">
+            <div class="modal-body row">
+
+                <div class="col-xs-12 col-md-6 modal-marg">
+
+                    <label class="btn btn-success btn-file btn-block">
+                        Browse... <input type="file" accept="image/gif, image/jpeg, image/png" id="upload-logo">
+                    </label>
+
+                    <div class="modal-image-wrapper">
+                        <div class="image">
+
+                            <img id="uploaded-logo" class="img-logo" data-bind="attr:{src: UploadLogo.LogoURL}" />
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="col-xs-12 col-md-6 modal-marg">
+                    <form>
+                        <div class="form-group">
+                            <label for="add-title" class="modal-add-text">Add title</label>
+                            <input type="text" class="form-control" id="add-title" placeholder="Title..." data-bind="value: UploadLogo.Title">
+                        </div>
+                        <div class="form-group">
+                            <label for="add-description" class="modal-add-text">Add description</label>
+                            <textarea type="text" class="form-control modal-textarea" id="add-description" placeholder="Description..." data-bind="value: UploadLogo.Description"></textarea>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-xs-12" data-bind="visible: UploadLogo.ShowError">
+                    <p class="text-danger text-center" data-bind="text: UploadLogo.ErrorText"></p>
+                </div>
+
+                <div class="col-xs-12" data-bind="click: UploadLogo.ShareLogo">
+                    <button class="btn btn-block btn-primary">Share this logo</button>
+                </div>
+
+                <button type="button" class="close pull-right close-up" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+    @RenderSection("scripts", false) 
+    @Scripts.Render("~/ViewModels/UploadLogo")
+    @Scripts.Render("~/ViewModels/LogoDetails")
+    @Scripts.Render("~/ViewModels/Cards")
+}

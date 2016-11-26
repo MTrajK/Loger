@@ -1,0 +1,56 @@
+﻿@model Loger.Common.ViewModels.Register
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_EntryLayout.cshtml";
+}
+
+
+<div class="col-xs-12">
+    <div class="input-group">
+        <input type="email" class="form-control" placeholder="Email" data-bind="value: Email">
+        <span class="input-group-addon login-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+    </div>
+</div>
+
+<div class="col-xs-12">
+    <div class="input-group">
+        <input type="text" for="Username" class="form-control" placeholder="Username" data-bind="value: Username">
+        <span class="input-group-addon login-addon"><span class="glyphicon glyphicon-user"></span></span>
+    </div>
+</div>
+
+<div class="col-xs-12">
+    <div class="input-group">
+        <input type="password" class="form-control" placeholder="Password" data-bind="value: Password">
+        <span class="input-group-addon login-addon"><span class="glyphicon glyphicon-lock"></span></span>
+    </div>
+</div>
+
+<div class="col-xs-12">
+    <div class="input-group">
+        <input type="password" for="ConfirmPassword" class="form-control" placeholder="Confirm password" data-bind="value: ConfirmPassword">
+        <span class="input-group-addon login-addon"><span class="glyphicon glyphicon-lock"></span></span>
+    </div>
+</div>
+
+<div class="col-xs-12" data-bind="visible: ShowError">
+    <p class="text-danger text-center" data-bind="text: ErrorText"></p>
+</div>
+
+<div class="col-xs-12">
+    <button type="submit" class="btn btn-block btn-primary form-control login-btn" data-bind="click: Register">Register</button>
+</div>
+
+<div class="col-xs-12 text-center">
+    <!-- sto da pisuva na linkot, imeto na funkcijata vo kontrolerot, imeto na kontrolerot, null, klasi koi sakam da gi dodadam -->
+    @Html.ActionLink("Log In", "Login", "Account", null, new { @class = "login-a" })
+</div>
+
+
+@section scripts {
+    <script>
+        var model = @Html.Raw(Json.Encode(Model));
+        var viewmodel = ko.mapping.fromJS(model);
+    </script>
+    @Scripts.Render("~/ViewModels/Register")
+}

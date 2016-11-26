@@ -1,0 +1,59 @@
+﻿@model Loger.Common.ViewModels.Profile
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_AppLayout.cshtml";
+}
+
+
+<div class="row profile">
+
+    <div class="col-xs-12 text-center">
+        <img class="profile-img img-circle" data-bind="attr: {src: AccountPhotoURL}">
+    </div>
+
+    <div class="col-xs-12 text-center profile-user">
+        <span class="profile-username" data-bind="text: Username"></span>
+        
+        <btn class="btn btn-success" data-bind="visible: FollowingBtn, click: ClickFollowingBtn, text: FollowingText, event: {mouseover: ChangeText, mouseout: ChangeText}">
+        </btn>
+
+        <btn class="btn btn-default" data-bind="visible: EditBtn, click: ClickEditBtn">
+            Edit profile
+        </btn>
+
+        <btn class="btn btn-info" data-bind="visible: NotFollowingBtn, click: ClickNotFollowingBtn">
+            Follow
+        </btn>
+
+    </div>
+
+    <div class="col-xs-12 text-center">
+
+        <span class="profile-desc">
+            <b data-bind="text: LogosNum"></b> logos
+        </span>
+
+        <span class="profile-desc">
+            <b data-bind="text: FollowersNum"></b> followers
+        </span>
+
+        <span class="profile-desc">
+            <b data-bind="text: FollowingNum"></b> following
+        </span>
+
+    </div>
+
+</div>
+
+<!-- tuka gi lista tie -->
+
+@Html.Partial("_CardsPartial")
+
+
+@section scripts {
+    <script>
+        var model = @Html.Raw(Json.Encode(Model));
+        var viewmodel = ko.mapping.fromJS(model);
+    </script>
+    @Scripts.Render("~/ViewModels/Profile")
+}

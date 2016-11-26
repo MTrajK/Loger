@@ -1,0 +1,11 @@
+C:\Users\MTrajK\Desktop\Loger\Loger.BLL\bin\Debug\Loger.BLL.dll
+C:\Users\MTrajK\Desktop\Loger\Loger.BLL\bin\Debug\Loger.BLL.pdb
+C:\Users\MTrajK\Desktop\Loger\Loger.BLL\bin\Debug\Loger.Common.dll
+C:\Users\MTrajK\Desktop\Loger\Loger.BLL\bin\Debug\Loger.DAL.dll
+C:\Users\MTrajK\Desktop\Loger\Loger.BLL\bin\Debug\Loger.Common.pdb
+C:\Users\MTrajK\Desktop\Loger\Loger.BLL\bin\Debug\Loger.DAL.pdb
+C:\Users\MTrajK\Desktop\Loger\Loger.BLL\obj\Debug\Loger.BLL.csprojResolveAssemblyReference.cache
+C:\Users\MTrajK\Desktop\Loger\Loger.BLL\obj\Debug\Loger.BLL.dll
+C:\Users\MTrajK\Desktop\Loger\Loger.BLL\obj\Debug\Loger.BLL.pdb
+C:\Users\MTrajK\Desktop\Loger\Loger.BLL\bin\Debug\EntityFramework.dll
+C:\Users\MTrajK\Desktop\Loger\Loger.BLL\bin\Debug\EntityFramework.xml
