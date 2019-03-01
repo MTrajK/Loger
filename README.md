@@ -10,8 +10,9 @@ Social network for sharing logos, designs etc.
 To run/install this application, you'll need:
 
 - [Visual Studio](https://visualstudio.microsoft.com/)
+- [IIS](https://www.iis.net/)
 - [SQL Server Express](https://www.microsoft.com/en-us/sql-server/sql-server-editions-express)
-- After installing these tools, you'll need a database structure. You can uncomment [this code](https://github.com/MTrajK/Loger/blob/master/src/Loger.DAL/Setup/LogerInitializer.cs) when the app is started for the first time, or you can execute [this SQL command](https://github.com/MTrajK/Loger/blob/master/src/Loger.DAL/Setup/logerSeed.sql) by yourself.
+- After installing these tools, you'll need a database structure. You can uncomment [this code](https://github.com/MTrajK/Loger/blob/master/src/Loger.DAL/Setup/LogerInitializer.cs) when the app is started for the first time, or you can execute [this SQL command](https://github.com/MTrajK/Loger/blob/master/src/Loger.DAL/Setup/logerSeed.sql) by yourself (using [SQL Server Management Studio](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-2017) or something else).
 
 ## Description
 
@@ -23,8 +24,8 @@ Functionalities:
 - Update the user profile (upload a profile picture, change the password, etc)
 - Upload a new post (logo, design) with a title and a description
 - Comment and like/fave posts
-- Visit and follow some other users (all user's profiles are public)
-- 3 main tabs: Home (all newest posts), Following (the newest posts from the following users), Favorites (all liked posts)
+- Visit and follow users (all profiles are public)
+- 4 different ways to explore logos, designs: Home tab (all newest posts), Following tab (the newest posts from the following users), Favorites tabs (all liked posts), user profile (specific user posts)
 
 ## Repo structure
 
