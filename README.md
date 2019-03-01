@@ -33,6 +33,7 @@ Functionalities:
 
 ## Tech/frameworks
 
+- [N-tier architecture](https://en.wikipedia.org/wiki/Multitier_architecture) - Implemented with three-tier architecture: [Presentation tier](https://github.com/MTrajK/Loger/blob/master/src/Loger.UI) (UI level, all front-end things), [Application tier](https://github.com/MTrajK/Loger/blob/master/src/Loger.BLL) (Business logic), [Data tier](https://github.com/MTrajK/Loger/blob/master/src/Loger.DAL) (Database access)
 - [ASP.NET MVC](https://dotnet.microsoft.com/apps/aspnet/mvc) - Web application framework developed by Microsoft
 - [Entity Framework](https://docs.microsoft.com/en-us/ef/) - Framework used for interaction between .NET applications and relational databases
 - [Knockout.js](https://knockoutjs.com/) - JavaScript framework, MVVM pattern
